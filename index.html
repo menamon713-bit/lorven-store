@@ -41,7 +41,7 @@
 
         #intro-screen.hidden { opacity: 0; visibility: hidden; }
 
-        /* 🔴 اللوجو */
+        /* اللوجو */
         .intro-logo-img {
             width: 180px; 
             height: auto;
@@ -149,7 +149,6 @@
             transition: transform 0.3s;
         }
 
-        /* حاوية الصورة */
         .floating-img-container {
             background-color: var(--cream); 
             border-radius: 20px;
@@ -275,7 +274,6 @@
     <div id="intro-screen">
         <button class="skip-btn" onclick="skipIntro()">SKIP INTRO ↗</button>
         
-        <!-- 🔴 اللوجو المحلي -->
         <img src="logo.png" alt="LORVEN Logo" class="intro-logo-img">
         <div class="intro-text">LORVEN</div>
     </div>
@@ -283,7 +281,6 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-left">
-            <!-- 🔴 اللوجو المحلي -->
             <img src="logo.png" alt="LORVEN Logo" class="nav-logo-img">
             <div class="nav-logo-text">LORVEN</div>
         </div>
@@ -307,14 +304,12 @@
         
         <div class="floating-item" onclick="scrollToCollection()">
             <div class="floating-img-container">
-                <!-- 🔴 الهودي الأول المحلي -->
                 <img src="hoodie1.jpg" alt="Hoodie 1">
             </div>
         </div>
 
         <div class="floating-item" onclick="scrollToCollection()">
             <div class="floating-img-container">
-                <!-- 🔴 الهودي التاني المحلي -->
                 <img src="hoodie2.jpg" alt="Hoodie 2">
             </div>
         </div>
@@ -373,7 +368,7 @@
         function skipIntro() { document.getElementById('intro-screen').classList.add('hidden'); }
         setTimeout(skipIntro, 3500);
 
-        // 🔴 صور المنتجات المحلية
+        // صور المنتجات المحلية
         const products = [
             { id: 1, name: "ZERO GRAVITY HOODIE", price: 850, img: "hoodie1.jpg" },
             { id: 2, name: "HEART OF THE GAME", price: 850, img: "hoodie2.jpg" }
@@ -471,6 +466,7 @@
 
         function checkoutWhatsApp() {
             if (cart.length === 0) return alert("Your bag is empty!");
+            
             let msg = "Hello LORVEN, I'd like to order:\n\n";
             let total = 0;
             cart.forEach(item => {
@@ -478,7 +474,20 @@
                 total += item.price * item.qty;
             });
             msg += `\n💰 Total: ${total} EGP`;
-            window.open(`https://api.whatsapp.com/send?phone=201017351246&text=${encodeURIComponent(msg)}`, '_blank');
+            
+            // الحل السحري لمشكلة واتساب الأعمال
+            const encodedMsg = encodeURIComponent(msg);
+            const isAndroid = /Android/i.test(navigator.userAgent);
+            
+            if (isAndroid) {
+                // لو أندرويد، هنفتح واتساب العادي بالغصب
+                const intentLink = `intent://send?phone=201017351246&text=${encodedMsg}#Intent;scheme=whatsapp;package=com.whatsapp;end`;
+                window.location.href = intentLink;
+            } else {
+                // لو آيفون أو كمبيوتر، هنستخدم اللينك العادي
+                const webLink = `https://api.whatsapp.com/send?phone=201017351246&text=${encodedMsg}`;
+                window.open(webLink, '_blank');
+            }
         }
 
         function scrollToCollection() {
