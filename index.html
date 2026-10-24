@@ -18,6 +18,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        input, textarea, select { cursor: text; } /* عشان الكيبورد يشتغل في الفورم */
 
         body {
             background: radial-gradient(circle at 50% 0%, #111 0%, var(--bg) 70%);
@@ -48,6 +49,7 @@
         
         .intro-logo-img { 
             width: 180px; height: auto; object-fit: contain; 
+            mix-blend-mode: screen; /* شيلنا خلفية اللوجو */
             animation: pulseLogo 2s infinite alternate; 
         }
         @keyframes pulseLogo {
@@ -64,19 +66,12 @@
             position: fixed; top: 0; left: 0; width: 100%; padding: 15px 30px;
             display: flex; justify-content: space-between; align-items: center;
             background: rgba(5, 5, 5, 0.7); backdrop-filter: blur(10px);
-            z-index: 500; /* رفعنا الرقم عشان يبقى فوق أي حاجة */
-            border-bottom: 1px solid var(--border);
+            z-index: 500; border-bottom: 1px solid var(--border);
         }
         .nav-left { display: flex; align-items: center; gap: 12px; }
-        .nav-logo-img { width: 30px; height: 30px; object-fit: contain; filter: drop-shadow(0 0 10px var(--cream)); }
+        .nav-logo-img { width: 30px; height: 30px; object-fit: contain; mix-blend-mode: screen; filter: drop-shadow(0 0 10px var(--cream)); }
         .nav-logo-text { font-family: var(--font-head); font-size: 22px; font-weight: 700; letter-spacing: 4px; color: var(--cream); }
-        
-        /* زرار السلة */
-        .cart-btn { 
-            background: transparent; border: 1px solid var(--border); color: var(--cream); 
-            padding: 10px 20px; font-size: 12px; font-weight: 600; letter-spacing: 2px; 
-            cursor: pointer; transition: 0.3s; z-index: 600; position: relative;
-        }
+        .cart-btn { background: transparent; border: 1px solid var(--border); color: var(--cream); padding: 10px 20px; font-size: 12px; font-weight: 600; letter-spacing: 2px; cursor: pointer; transition: 0.3s; z-index: 600; position: relative; }
         .cart-btn:hover { border-color: var(--cream); box-shadow: 0 0 20px rgba(245,240,230,0.3); }
 
         /* --- Hero Section --- */
@@ -96,7 +91,7 @@
         .showcase-section {
             position: relative; width: 100%; min-height: 70vh; display: flex; flex-wrap: wrap;
             justify-content: center; align-items: center; gap: 60px; padding: 60px 20px; overflow: hidden;
-            z-index: 10; /* عشان ميتداخلش مع الناف بار */
+            z-index: 10;
         }
         .glow-ring { position: absolute; width: 450px; height: 450px; border: 1px solid rgba(245, 240, 230, 0.05); border-radius: 50%; animation: spin 20s linear infinite; z-index: 1; }
         .glow-ring::before { content: ''; position: absolute; top: 10%; left: 10%; width: 10px; height: 10px; background: var(--cream); border-radius: 50%; box-shadow: 0 0 25px var(--cream); }
@@ -104,7 +99,7 @@
 
         .floating-item { position: relative; width: 320px; z-index: 2; cursor: none; transition: transform 0.3s; }
         
-        /* 🔴 السحر اللي بيشيل المربع الأسود ويزود الإضاءة */
+        /* 🔴 الهودي الطاير */
         .floating-item img { 
             width: 100%; 
             mix-blend-mode: screen;
@@ -115,7 +110,7 @@
         @keyframes float1 { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-30px) rotate(3deg); } }
         @keyframes float2 { 0%, 100% { transform: translateY(0) rotate(3deg); } 50% { transform: translateY(30px) rotate(-3deg); } }
 
-        /* --- Collection Grid & 3D Tilt --- */
+        /* --- Collection Grid --- */
         .collection { padding: 80px 5%; max-width: 1200px; margin: 0 auto; position: relative; z-index: 10;}
         .section-title { font-family: var(--font-head); font-size: 32px; text-transform: uppercase; border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 40px; text-shadow: 0 0 10px var(--cream); }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; perspective: 1000px; }
@@ -165,8 +160,25 @@
         .sizes { display: flex; gap: 10px; margin-bottom: 30px; }
         .size-btn { width: 45px; height: 45px; background: transparent; border: 1px solid var(--border); color: var(--text); cursor: pointer; transition: 0.3s; font-weight: bold;}
         .size-btn.active, .size-btn:hover { border-color: var(--cream); background: var(--cream); color: var(--bg); box-shadow: 0 0 15px rgba(245,240,230,0.3); }
-        .add-to-cart-btn { width: 100%; padding: 15px; background: var(--cream); color: var(--bg); border: none; font-weight: 900; cursor: pointer; letter-spacing: 2px; transition: 0.3s;}
-        .add-to-cart-btn:hover { background: #fff; box-shadow: 0 0 30px rgba(245,240,230,0.6); }
+        
+        .action-btns { display: flex; gap: 10px; }
+        .add-to-cart-btn { flex: 1; padding: 15px; background: transparent; border: 1px solid var(--cream); color: var(--cream); font-weight: 900; cursor: pointer; letter-spacing: 2px; transition: 0.3s;}
+        .add-to-cart-btn:hover { background: var(--cream); color: var(--bg); box-shadow: 0 0 30px rgba(245,240,230,0.6); }
+        
+        /* 🔴 زرار BUY NOW */
+        .buy-now-btn { flex: 1; padding: 15px; background: var(--cream); color: var(--bg); border: none; font-weight: 900; cursor: pointer; letter-spacing: 2px; transition: 0.3s;}
+        .buy-now-btn:hover { background: #fff; box-shadow: 0 0 30px rgba(245,240,230,0.6); }
+
+        /* 🔴 فورم الشيك أوت */
+        .checkout-form-modal { position: fixed; inset: 0; background: rgba(5,5,5,0.95); z-index: 1500; display: none; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(10px);}
+        .checkout-form-modal.active { display: flex; }
+        .checkout-form-content { background: #0a0a0a; border: 1px solid var(--border); width: 100%; max-width: 450px; padding: 30px; position: relative; border-radius: 15px; }
+        .form-group { margin-bottom: 20px; text-align: right; }
+        .form-group label { display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase; }
+        .form-group input, .form-group textarea { width: 100%; padding: 15px; background: #111; border: 1px solid var(--border); color: white; font-family: var(--font-body); border-radius: 8px; outline: none; transition: 0.3s; cursor: text; }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--cream); box-shadow: 0 0 10px rgba(245,240,230,0.1); }
+        .submit-order-btn { width: 100%; padding: 15px; background: #25D366; color: #000; border: none; font-weight: 900; font-size: 16px; cursor: pointer; transition: 0.3s; border-radius: 8px; letter-spacing: 1px;}
+        .submit-order-btn:hover { background: #1eb356; box-shadow: 0 0 20px #25D366; }
 
         /* 🔴 السلة الجانبية */
         .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; display: none; opacity: 0; transition: 0.3s; cursor: pointer;}
@@ -255,6 +267,7 @@
 
     <footer>© 2026 LORDVEN EG. ZERO GRAVITY.</footer>
 
+    <!-- Product Modal -->
     <div class="modal" id="product-modal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal()">×</button>
@@ -271,9 +284,35 @@
                         <button class="size-btn" onclick="selectSize(this)">L</button>
                         <button class="size-btn" onclick="selectSize(this)">XL</button>
                     </div>
-                    <button class="add-to-cart-btn" onclick="addToCart()">ADD TO BAG +</button>
+                    <div class="action-btns">
+                        <button class="add-to-cart-btn" onclick="addToCart()">ADD TO BAG +</button>
+                        <button class="buy-now-btn" onclick="buyNow()">BUY NOW</button>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- 🔴 Checkout Form Modal -->
+    <div class="checkout-form-modal" id="checkout-modal">
+        <div class="checkout-form-content">
+            <button class="close-modal" onclick="closeCheckoutModal()">×</button>
+            <h2 class="modal-title" style="text-align: center; margin-bottom: 20px;">SHIPPING DETAILS</h2>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label>FULL NAME</label>
+                    <input type="text" id="cust-name" required placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label>PHONE NUMBER</label>
+                    <input type="tel" id="cust-phone" required placeholder="010xxxxxxxx">
+                </div>
+                <div class="form-group">
+                    <label>ADDRESS</label>
+                    <textarea id="cust-address" required rows="3" placeholder="City, Street, Building..."></textarea>
+                </div>
+                <button type="submit" class="submit-order-btn">SEND ORDER VIA WHATSAPP</button>
+            </form>
         </div>
     </div>
 
@@ -290,22 +329,29 @@
                 <span>TOTAL</span>
                 <span id="cart-total">0 EGP</span>
             </div>
-            <button class="checkout-btn" onclick="checkoutWhatsApp()">CHECKOUT VIA WHATSAPP</button>
+            <button class="checkout-btn" id="proceed-checkout-btn">CHECKOUT VIA WHATSAPP</button>
         </div>
     </div>
 
     <script>
-        // ربط زراير السلة بالجافاسكريبت
+        // ربط زراير السلة
         document.getElementById('open-cart-btn').addEventListener('click', toggleCart);
         document.getElementById('close-cart-btn').addEventListener('click', toggleCart);
         document.getElementById('cart-overlay').addEventListener('click', toggleCart);
+        
+        // ربط زرار الشيك أوت (من السلة) بفتح الفورم
+        document.getElementById('proceed-checkout-btn').addEventListener('click', () => {
+            if (cart.length === 0) return alert("Your bag is empty!");
+            toggleCart(); // اقفل السلة
+            document.getElementById('checkout-modal').classList.add('active'); // افتح الفورم
+        });
 
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
-        document.querySelectorAll('.product-card, .floating-item, .cart-btn, .add-to-cart-btn, .size-btn, .close-modal, .close-cart, .checkout-btn, .skip-btn, .remove-item').forEach(el => {
+        document.querySelectorAll('.product-card, .floating-item, .cart-btn, .add-to-cart-btn, .buy-now-btn, .size-btn, .close-modal, .close-cart, .checkout-btn, .skip-btn, .remove-item, .submit-order-btn').forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
         });
@@ -371,6 +417,8 @@
         }
 
         function closeModal() { document.getElementById('product-modal').classList.remove('active'); }
+        function closeCheckoutModal() { document.getElementById('checkout-modal').classList.remove('active'); }
+        
         function selectSize(btn) {
             document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
@@ -382,13 +430,25 @@
             document.getElementById('cart-overlay').classList.toggle('open');
         }
 
+        // إضافة للسلة
         function addToCart() {
             const existing = cart.find(item => item.id === currentProduct.id && item.size === currentSize);
             if (existing) existing.qty += 1;
             else cart.push({ ...currentProduct, size: currentSize, qty: 1 });
             saveCart();
             closeModal();
-            toggleCart(); // بيفتح السلة تلقائياً لما تضيف منتج
+            toggleCart(); // يفتح السلة
+        }
+
+        // شراء فوري (Buy Now)
+        function buyNow() {
+            // بنضيف المنتج للسلة مؤقتاً عشان يتبعت
+            const existing = cart.find(item => item.id === currentProduct.id && item.size === currentSize);
+            if (existing) existing.qty += 1;
+            else cart.push({ ...currentProduct, size: currentSize, qty: 1 });
+            saveCart();
+            closeModal();
+            document.getElementById('checkout-modal').classList.add('active'); // يفتح الفورم على طول
         }
 
         function saveCart() {
@@ -430,19 +490,36 @@
             saveCart();
         }
 
-        function checkoutWhatsApp() {
-            if (cart.length === 0) return alert("Your bag is empty!");
-            let msg = "Hello LORDVEN EG, I'd like to order:\n\n";
+        // 🔴 إرسال الفورم للواتساب
+        document.getElementById('checkout-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+            const address = document.getElementById('cust-address').value;
+
+            let msg = "*NEW ORDER - LORDVEN EG*\n\n";
+            msg += `👤 *Name:* ${name}\n`;
+            msg += `📞 *Phone:* ${phone}\n`;
+            msg += `📍 *Address:* ${address}\n\n`;
+            msg += "🛒 *Order Details:*\n";
+            
             let total = 0;
             cart.forEach(item => {
                 msg += `▪️ ${item.name} (Size: ${item.size}) x${item.qty} = ${item.price * item.qty} EGP\n`;
                 total += item.price * item.qty;
             });
-            msg += `\n💰 Total: ${total} EGP`;
-            
+
+            msg += `\n💰 *Total: ${total} EGP*`;
+
             const encodedMsg = encodeURIComponent(msg);
             const isAndroid = /Android/i.test(navigator.userAgent);
             
+            // مسح السلة بعد الطلب
+            cart = [];
+            saveCart();
+            closeCheckoutModal();
+
             if (isAndroid) {
                 const intentLink = `intent://send?phone=201017351246&text=${encodedMsg}#Intent;scheme=whatsapp;package=com.whatsapp;end`;
                 window.location.href = intentLink;
@@ -450,7 +527,7 @@
                 const webLink = `https://api.whatsapp.com/send?phone=201017351246&text=${encodedMsg}`;
                 window.open(webLink, '_blank');
             }
-        }
+        });
 
         function scrollToCollection() {
             document.getElementById('collection').scrollIntoView({ behavior: 'smooth' });
