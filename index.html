@@ -41,7 +41,7 @@
 
         #intro-screen.hidden { opacity: 0; visibility: hidden; }
 
-        /* اللوجو هنا */
+        /* 🔴 اللوجو */
         .intro-logo-img {
             width: 180px; 
             height: auto;
@@ -110,7 +110,7 @@
         
         .hero-title span { display: block; color: transparent; -webkit-text-stroke: 1px var(--cream); }
 
-        /* --- Showcase (الطايرة) --- */
+        /* --- Showcase (الهوديز الطايرة) --- */
         .showcase-section {
             position: relative;
             width: 100%;
@@ -149,7 +149,7 @@
             transition: transform 0.3s;
         }
 
-        /* حاوية الصورة عشان نخفي الخلفية البيضاء */
+        /* حاوية الصورة */
         .floating-img-container {
             background-color: var(--cream); 
             border-radius: 20px;
@@ -161,7 +161,7 @@
 
         .floating-item img {
             width: 100%;
-            mix-blend-mode: multiply; /* دمج الصورة مع الخلفية الكريمي */
+            mix-blend-mode: multiply; 
             animation: float1 6s ease-in-out infinite;
         }
 
@@ -275,7 +275,7 @@
     <div id="intro-screen">
         <button class="skip-btn" onclick="skipIntro()">SKIP INTRO ↗</button>
         
-        <!-- 🔴 صورة اللوجو -->
+        <!-- 🔴 اللوجو المحلي -->
         <img src="logo.png" alt="LORVEN Logo" class="intro-logo-img">
         <div class="intro-text">LORVEN</div>
     </div>
@@ -283,7 +283,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-left">
-            <!-- 🔴 صورة اللوجو الصغيرة -->
+            <!-- 🔴 اللوجو المحلي -->
             <img src="logo.png" alt="LORVEN Logo" class="nav-logo-img">
             <div class="nav-logo-text">LORVEN</div>
         </div>
@@ -301,20 +301,20 @@
         </h1>
     </section>
 
-    <!-- Showcase (الطايرة) -->
+    <!-- Showcase (الهوديز الطايرة) -->
     <section class="showcase-section">
         <div class="glow-ring"></div>
         
         <div class="floating-item" onclick="scrollToCollection()">
             <div class="floating-img-container">
-                <!-- 🔴 الهودي الأول -->
+                <!-- 🔴 الهودي الأول المحلي -->
                 <img src="hoodie1.jpg" alt="Hoodie 1">
             </div>
         </div>
 
         <div class="floating-item" onclick="scrollToCollection()">
             <div class="floating-img-container">
-                <!-- 🔴 الهودي التاني -->
+                <!-- 🔴 الهودي التاني المحلي -->
                 <img src="hoodie2.jpg" alt="Hoodie 2">
             </div>
         </div>
@@ -373,7 +373,7 @@
         function skipIntro() { document.getElementById('intro-screen').classList.add('hidden'); }
         setTimeout(skipIntro, 3500);
 
-        // 🔴 صور المنتجات بتشاور على الملفات المحلية
+        // 🔴 صور المنتجات المحلية
         const products = [
             { id: 1, name: "ZERO GRAVITY HOODIE", price: 850, img: "hoodie1.jpg" },
             { id: 2, name: "HEART OF THE GAME", price: 850, img: "hoodie2.jpg" }
